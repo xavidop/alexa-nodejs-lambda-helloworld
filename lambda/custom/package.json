@@ -1,0 +1,21 @@
+{
+  "name": "alexa-nodejs-lambda-helloworld",
+  "version": "1.0.0",
+  "description": "Alexa HelloWorld example with NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xavidop/alexa-nodejs-lambda-helloworld.git"
+  },
+  "author": "Xavier Portilla Edo",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "ask-sdk-core": "^2.7.0",
+    "ask-sdk-model": "^1.19.0",
+    "aws-sdk": "^2.326.0",
+    "i18next": "^15.0.5"
+  }
+}
