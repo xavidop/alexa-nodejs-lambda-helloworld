@@ -63,12 +63,13 @@ These are the main files of the project:
     ├───hooks
     ├───lambda
     │   └───custom
-    │           index.js
-    │           languageStrings.js
-    │           local-debugger.js
-    │           package.json
-    │           util.js
-    │
+    │         ├───errors
+    │         ├───intents
+    │         ├───interceptors
+    │         ├───utilities
+    │         ├─── index.js
+    │         ├─── local-debugger.js
+    │         └─── package.json
     ├───models
     │       es-ES.json
     └───skill.json
@@ -82,10 +83,13 @@ These are the main files of the project:
   * `pre_deploy_hook`: executed before the Skill deployment. In Node.js runs `npm install` in each sourceDir in `skill.json` as well.
 * lambda/custom: A folder that contains the source code for the skill's AWS Lambda function:
   * `index.js`: the lambda main entry point.
-  * `languageStrings.js`: i18n dictionaries used by the library `i18next` which allow us to run same in Skill in different configuration languages.
+  * `utilities/languageStrings.js`: i18n dictionaries used by the library `i18next` which allow us to run same in Skill in different configuration languages.
   * `package.json`: this file is core to the Node.js ecosystem and is a basic part of understanding and working with Node.js, npm, and even modern JavaScript
-  * `util.js`: file with helpful functions.
+  * `utilities/util.js`: file with helpful functions.
   * `local-debugger.js`: used for debug our skill locally.
+  * `errors`: folder that contains all Error handlers.
+  * `intents`: folder that contains all Intent handlers.
+  * `interceptors`: here you can find all interceptors.
 * models – A folder that contains interaction models for the skill. Each interaction model is defined in a JSON file named according to the locale. For example, es-ES.json.
 * `skill.json` – The skill manifest. One of the most important files in our project.
 
