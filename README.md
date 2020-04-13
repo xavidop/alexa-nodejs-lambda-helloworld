@@ -94,7 +94,7 @@ These are the main files of the project:
 * `skill.json` – The skill manifest. One of the most important files in our project.
 
 
-### Lambda function in Javascript
+## Lambda function in Javascript
 
 The ASK SDK for Node.js makes it easier for you to build highly engaging skills by allowing you to spend more time implementing features and less time writing boilerplate code.
 
