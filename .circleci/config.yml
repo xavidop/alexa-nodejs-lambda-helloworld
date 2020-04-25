@@ -1,0 +1,14 @@
+version: 2.1
+
+jobs:
+  checkout:
+    docker:
+      - image: 'martindsouza/amazon-ask-cli'
+    steps:
+      - checkout
+      - run: node --version
+
+workflows:
+    init:
+      jobs:
+        - checkout
