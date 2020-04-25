@@ -41,8 +41,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
+      - run: rm -rf /home/node/.ask
+      - run: rm -rf /home/node/.aws
       - run: ls -la
       - run: ask deploy
+      - run: cd lambda/custom && npm clean
       - store_artifacts:
           path: ./
 
