@@ -19,12 +19,12 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: pwd
       - run: ls -la
+      - run: cd lambda/custom && npm install
 
 
 workflows:
-    init:
+    skill-pipeline:
       jobs:
         - checkout
         - build:
