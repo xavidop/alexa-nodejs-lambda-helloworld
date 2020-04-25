@@ -10,6 +10,7 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
+      - run: chown -R .  
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -42,6 +43,8 @@ jobs:
       - attach_workspace:
           at: /home/node/
       - run: ls -la
+      - run: ls -la hooks/
+      - run: chmod 777 -R hooks/ 
       - run: ask deploy
       - persist_to_workspace:
           root: /home/node/
@@ -53,7 +56,7 @@ jobs:
       - attach_workspace:
           at: /home/node/
       - run: ls -la
-      - run: rm -rf /lambda/custom/node_modules
+      - run: rm -rf lambda/custom/node_modules
       - store_artifacts:
           path: ./
 workflows:
