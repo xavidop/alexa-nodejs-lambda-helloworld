@@ -21,7 +21,21 @@ jobs:
           at: /home/node/
       - run: ls -la
       - run: cd lambda/custom && npm install
-
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
+  test:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: ls -la
+      - run: cd lambda/custom && npm run test
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
 
 workflows:
     skill-pipeline:
@@ -30,3 +44,6 @@ workflows:
         - build:
             requires:
               - checkout
+        - test:
+            requires:
+              - build
