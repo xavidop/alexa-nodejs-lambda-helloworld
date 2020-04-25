@@ -10,7 +10,7 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
-      - run: pwd
+      - run: chmod +x -R ./hooks
       - persist_to_workspace:
           root: /root/
           paths:
@@ -43,7 +43,7 @@ jobs:
       - attach_workspace:
           at: /root/
       - run: ls -la
-      - run: ask deploy --debug
+      - run: ask deploy --debug --force
       - persist_to_workspace:
           root: /root/
           paths:
