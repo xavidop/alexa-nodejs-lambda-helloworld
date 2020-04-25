@@ -44,11 +44,11 @@ jobs:
           at: /home/node/
       - run: ls -la
       - run: ls -la hooks/
-      - run: sed -i 's/#access_token#/$ACCESS_TOKEN/' /home/node/.ask/cli_config
-      - run: sed -i 's/#refresh_token#/$REFRESH_TOKEN/' /home/node/.ask/cli_config
-      - run: sed -i 's/#vendor_id#/$VENDOR_ID/' /home/node/.ask/cli_config
-      - run: sed -i 's/#aws_access_key_id#/$ACCESS_KEY_ID/' /home/node/.aws/credentials
-      - run: sed -i 's/#aws_secret_access_key#/$SECRET_ACCESS_KEY/' /home/node/.aws/credentials
+      - run: sed -i "s/#access_token#/$ACCESS_TOKEN/" /home/node/.ask/cli_config
+      - run: sed -i "s/#refresh_token#/$REFRESH_TOKEN/" /home/node/.ask/cli_config
+      - run: sed -i "s/#vendor_id#/$VENDOR_ID/" /home/node/.ask/cli_config
+      - run: sed -i "s/#aws_access_key_id#/$ACCESS_KEY_ID/" /home/node/.aws/credentials
+      - run: sed -i "s/#aws_secret_access_key#/$SECRET_ACCESS_KEY/" /home/node/.aws/credentials
       - run: cat /home/node/.aws/credentials
       - run: cat /home/node/.ask/cli_config
       - run: ask deploy
