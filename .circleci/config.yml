@@ -10,58 +10,48 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
-      - run: chmod +x -R hooks/ 
       - persist_to_workspace:
-          root: /home/node/
+          root: /home/root/
           paths:
             - project
   build:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /home/node/
+          at: /home/root/
       - run: ls -la
       - run: cd lambda/custom && npm install
       - persist_to_workspace:
-          root: /home/node/
+          root: /home/root/
           paths:
             - project
   test:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /home/node/
+          at: /home/root/
       - run: ls -la
       - run: cd lambda/custom && npm run test
       - persist_to_workspace:
-          root: /home/node/
+          root: /home/root/
           paths:
             - project
   deploy:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /home/node/
+          at: /home/root/
       - run: ls -la
-      - run: ls -la hooks/
-      - run: sed -i "s/#access_token#/$ACCESS_TOKEN/" /home/node/.ask/cli_config
-      - run: sed -i "s/#refresh_token#/$REFRESH_TOKEN/" /home/node/.ask/cli_config
-      - run: sed -i "s/#vendor_id#/$VENDOR_ID/" /home/node/.ask/cli_config
-      - run: sed -i "s/#aws_access_key_id#/$ACCESS_KEY_ID/" /home/node/.aws/credentials
-      - run: sed -i "s/#aws_secret_access_key#/$SECRET_ACCESS_KEY/" /home/node/.aws/credentials
-      - run: cat /home/node/.aws/credentials
-      - run: cat /home/node/.ask/cli_config
-      - run: export ASK_DEFAULT_PROFILE=""
       - run: ask deploy --debug
       - persist_to_workspace:
-          root: /home/node/
+          root: /home/root/
           paths:
             - project
   store-artifacts:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /home/node/
+          at: /home/root/
       - run: ls -la
       - run: rm -rf lambda/custom/node_modules
       - store_artifacts:
