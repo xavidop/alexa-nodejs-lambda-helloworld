@@ -10,9 +10,15 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
   build:
     executor: ask-executor
     steps:
+      - attach_workspace:
+          at: /home/node/
       - run: pwd
       - run: ls -la
 
