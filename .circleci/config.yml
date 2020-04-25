@@ -20,6 +20,6 @@ workflows:
     init:
       jobs:
         - checkout
-        - build
+        - build:
             requires:
               - checkout
