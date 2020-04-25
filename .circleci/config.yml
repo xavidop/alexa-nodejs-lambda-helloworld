@@ -36,6 +36,16 @@ jobs:
           root: /home/node/
           paths:
             - project
+  deploy:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: ls -la
+      - run: ask deploy
+      - store_artifacts:
+          path: ./
+
 
 workflows:
     skill-pipeline:
@@ -47,3 +57,6 @@ workflows:
         - test:
             requires:
               - build
+        - deploy:
+            requires:
+              - test
