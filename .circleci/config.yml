@@ -49,7 +49,7 @@ jobs:
           root: /home/node/
           paths:
             - project
-   store-artifacts:
+  store-artifacts:
     executor: ask-executor
     steps:
       - attach_workspace:
@@ -58,8 +58,6 @@ jobs:
       - run: rm -rf /lambda/custom/node_modules
       - store_artifacts:
           path: ./
-
-
 workflows:
     skill-pipeline:
       jobs:
