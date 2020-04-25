@@ -1,14 +1,25 @@
 version: 2.1
 
+executors:
+  ask-executor:
+    docker:
+      - image: martindsouza/amazon-ask-cli
+
 jobs:
   checkout:
-    docker:
-      - image: 'martindsouza/amazon-ask-cli'
+    executor: ask-executor
     steps:
       - checkout
-      - run: node --version
+  build:
+    executor: ask-executor
+    steps:
+      - run: pwd
+
 
 workflows:
     init:
       jobs:
         - checkout
+        - build
+            requires:
+              - checkout
