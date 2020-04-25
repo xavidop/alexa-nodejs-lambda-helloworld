@@ -12,47 +12,47 @@ jobs:
       - checkout
       - run: chmod +x -R ./hooks
       - persist_to_workspace:
-          root: /root/
+          root: /home/node/
           paths:
             - project
   build:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /root/
+          at: /home/node/
       - run: ls -la
       - run: cd lambda/custom && npm install
       - persist_to_workspace:
-          root: /root/
+          root: /home/node/
           paths:
             - project
   test:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /root/
+          at: /home/node/
       - run: ls -la
       - run: cd lambda/custom && npm run test
       - persist_to_workspace:
-          root: /root/
+          root: /home/node/
           paths:
             - project
   deploy:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /root/
+          at: /home/node/
       - run: ls -la
       - run: ask deploy --debug --force
       - persist_to_workspace:
-          root: /root/
+          root: /home/node/
           paths:
             - project
   store-artifacts:
     executor: ask-executor
     steps:
       - attach_workspace:
-          at: /root/
+          at: /home/node/
       - run: ls -la
       - run: rm -rf lambda/custom/node_modules
       - store_artifacts:
