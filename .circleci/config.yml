@@ -10,6 +10,7 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
+      - run: chmod +x -R hooks/ 
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -43,7 +44,11 @@ jobs:
           at: /home/node/
       - run: ls -la
       - run: ls -la hooks/
-      - run: chmod 777 -R hooks/ 
+      - run: sed -i 's/#access_token#/${ASK_ACCESS_TOKEN}/' /home/node/.ask/cli_config
+      - run: sed -i 's/#refresh_token#/${ASK_REFRESH_TOKEN}/' /home/node/.ask/cli_config
+      - run: sed -i 's/#vendor_id#/${ASK_VENDOR_ID}/' /home/node/.ask/cli_config
+      - run: sed -i 's/#aws_access_key_id#/${AWS_ACCESS_KEY_ID}/' /home/node/.aws/credentials
+      - run: sed -i 's/#aws_secret_access_key#/${AWS_SECRET_ACCESS_KEY}/' /home/node/.aws/credentials
       - run: ask deploy
       - persist_to_workspace:
           root: /home/node/
