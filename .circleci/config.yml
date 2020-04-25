@@ -10,7 +10,6 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
-      - run: chown -R .  
       - persist_to_workspace:
           root: /home/node/
           paths:
