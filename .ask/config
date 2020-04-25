@@ -29,7 +29,7 @@
         ]
       }
     },
-    "ENVIRONMENT_ASK_PROFILE": {
+    "__ENVIRONMENT_ASK_PROFILE__": {
       "skill_id": "amzn1.ask.skill.ed038d5e-61eb-4383-a480-04e3398b398d",
       "was_cloned": false,
       "merge": {},
@@ -39,7 +39,7 @@
         },
         "interactionModel": {
           "es-ES": {
-            "eTag": "7f2f7bea2c1a6fe426e79007d7cf1798"
+            "eTag": "01c3e810c73b3976048ec48f6e20ebce"
           }
         },
         "lambda": [
@@ -52,7 +52,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-alexa-nodejs-lambda-helloworld-default",
             "handler": "index.handler",
-            "revisionId": "cbb0fc82-d875-4697-a85d-9235871551d3",
+            "revisionId": "d24ff6b8-6889-42ab-afcf-349fb78434ab",
             "runtime": "nodejs10.x"
           }
         ]
