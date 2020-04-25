@@ -3,7 +3,7 @@ version: 2.1
 executors:
   ask-executor:
     docker:
-      - image: martindsouza/amazon-ask-cli
+      - image: xavidop/alexa-ask-aws-cli:1.0
 
 jobs:
   checkout:
@@ -45,7 +45,17 @@ jobs:
       - run: rm -rf /home/node/.aws
       - run: ls -la
       - run: ask deploy
-      - run: cd lambda/custom && npm clean
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
+   store-artifacts:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: ls -la
+      - run: rm -rf /lambda/custom/node_modules
       - store_artifacts:
           path: ./
 
@@ -63,3 +73,6 @@ workflows:
         - deploy:
             requires:
               - test
+        - store-artifacts:
+            requires:
+              - deploy
