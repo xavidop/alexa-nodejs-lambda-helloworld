@@ -10,6 +10,7 @@ jobs:
     executor: ask-executor
     steps:
       - checkout
+      - run: pwd
       - persist_to_workspace:
           root: /home/root/
           paths:
