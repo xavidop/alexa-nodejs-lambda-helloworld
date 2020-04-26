@@ -10,7 +10,7 @@
         },
         "interactionModel": {
           "es-ES": {
-            "eTag": "dd46206469fa2c2a88d4c50262cad0ff"
+            "eTag": "026926a46b3ce7e7748f8210bbd3ef29"
           }
         },
         "lambda": [
@@ -23,7 +23,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-alexa-nodejs-lambda-helloworld-default",
             "handler": "index.handler",
-            "revisionId": "d0089c68-e663-4af6-80da-49d8200f7b31",
+            "revisionId": "95af68b3-fbbe-473e-9543-07e55c7a6797",
             "runtime": "nodejs10.x"
           }
         ]
@@ -39,7 +39,7 @@
         },
         "interactionModel": {
           "es-ES": {
-            "eTag": "56f78f703b60473a73bf6f35648e3647"
+            "eTag": "f4b748b2a3c486c19dc67cd8d61eeb0a"
           }
         },
         "lambda": [
@@ -52,7 +52,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-alexa-nodejs-lambda-helloworld-default",
             "handler": "index.handler",
-            "revisionId": "3db9aa7d-d76d-4adc-ab41-f9b546eb384a",
+            "revisionId": "f4f6cd2b-ae8f-4050-acd5-5bc949a819aa",
             "runtime": "nodejs10.x"
           }
         ]
