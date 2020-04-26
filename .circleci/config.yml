@@ -43,6 +43,11 @@ jobs:
       - attach_workspace:
           at: /home/node/
       - run: ls -la
+      - run: sed -i "s/ASK_ACCESS_TOKEN/${ASK_ACCESS_TOKEN}/g" /home/node/.ask/cli_config
+      - run: sed -i "s/ASK_REFRESH_TOKEN/${ASK_REFRESH_TOKEN}/g" /home/node/.ask/cli_config
+      - run: sed -i "s/VENDOR_ID/${VENDOR_ID}/g" /home/node/.ask/cli_config
+      - run: sed -i "s/AWS_ACCESS_KEY_ID/${AWS_ACCESS_KEY_ID}/g" /home/node/.ask/cli_config
+      - run: sed -i "s/AWS_SECRET_ACCESS_KEY/${AWS_SECRET_ACCESS_KEY}/g" /home/node/.ask/cli_config
       - run: ask deploy --debug --force
       - persist_to_workspace:
           root: /home/node/

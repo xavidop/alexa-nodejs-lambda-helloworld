@@ -10,7 +10,7 @@
         },
         "interactionModel": {
           "es-ES": {
-            "eTag": "7f2f7bea2c1a6fe426e79007d7cf1798"
+            "eTag": "dd46206469fa2c2a88d4c50262cad0ff"
           }
         },
         "lambda": [
@@ -23,7 +23,7 @@
             "codeUri": "lambda/custom",
             "functionName": "ask-custom-alexa-nodejs-lambda-helloworld-default",
             "handler": "index.handler",
-            "revisionId": "cbb0fc82-d875-4697-a85d-9235871551d3",
+            "revisionId": "d0089c68-e663-4af6-80da-49d8200f7b31",
             "runtime": "nodejs10.x"
           }
         ]
