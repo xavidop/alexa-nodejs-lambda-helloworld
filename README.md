@@ -401,6 +401,9 @@ The Alexa Developer Console will send a HTTPS request to the ngrok endpoint (htt
 * [Official Alexa Skills Kit Node.js SDK](https://www.npmjs.com/package/ask-sdk) - The Official Node.js SDK Documentation
 * [Official Alexa Skills Kit Documentation](https://developer.amazon.com/docs/ask-overviews/build-skills-with-the-alexa-skills-kit.html) - Official Alexa Skills Kit Documentation
 
+## CICD
+
+If you want to Devops your Skill, check it out this [markdown file](./CICD.md)
 
 ## Conclusion 
 
