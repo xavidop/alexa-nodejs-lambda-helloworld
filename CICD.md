@@ -101,7 +101,7 @@ The test job will execute the following tasks:
       - persist_to_workspace:
           root: /home/node/
           paths:
-            - projecttaskstaskstasks
+            - project
 ```
 
 **NOTE:** As this is our first hand on with CircleCI and DevOps with Alexa, there are no tests defined. We will define unit tests and code style checkers soon.
