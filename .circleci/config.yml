@@ -26,6 +26,19 @@ jobs:
           root: /home/node/
           paths:
             - project
+  pretest:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: ls -la
+      - run: cd lambda/custom && npm run lint
+      - store_test_results:
+          path: lambda/custom/
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
   test:
     executor: ask-executor
     steps:
@@ -33,6 +46,8 @@ jobs:
           at: /home/node/
       - run: ls -la
       - run: cd lambda/custom && npm run test
+      - store_test_results:
+          path: lambda/custom/
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -64,9 +79,12 @@ workflows:
         - build:
             requires:
               - checkout
-        - test:
+        - pretest:
             requires:
               - build
+        - test:
+            requires:
+              - pretest
         - deploy:
             requires:
               - test
