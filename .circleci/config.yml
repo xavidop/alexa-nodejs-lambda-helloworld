@@ -49,7 +49,7 @@ jobs:
       - store_test_results:
           path: lambda/custom/reports/mocha/
       - store_artifacts:
-          path: ./lambda/custom/reports/mocha/
+          path: ./lambda/custom/mochawesome-report/
       - persist_to_workspace:
           root: /home/node/
           paths:
