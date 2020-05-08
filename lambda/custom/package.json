@@ -7,7 +7,9 @@
     "lint": "eslint . --format junit --output-file eslint.xml",
     "lint-fix": "eslint --fix .",
     "test": "mocha --reporter mocha-junit-reporter",
-    "build-production": "cpy package.json src && cd src/ && npm install --production"
+    "copy-package": "cpy package.json src/",
+    "build-production": "npm install --production",
+    "build": "npm run copy-package && cd src/ && npm run build-production"
   },
   "repository": {
     "type": "git",
