@@ -31,9 +31,11 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd lambda/custom && npm run lint
+      - run: cd lambda/custom && npm run lint; npm run lint-html
       - store_test_results:
           path: lambda/custom/reports/eslint/
+      - store_artifacts:
+          path: ./lambda/custom/reports/eslint/
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -46,6 +48,8 @@ jobs:
       - run: cd lambda/custom && npm run test
       - store_test_results:
           path: lambda/custom/reports/mocha/
+      - store_artifacts:
+          path: ./lambda/custom/reports/mocha/
       - persist_to_workspace:
           root: /home/node/
           paths:
