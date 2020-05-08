@@ -1,3 +1,4 @@
+'use strict';
 
 /* *
  * This sample demonstrates handling intents from an Alexa skill
