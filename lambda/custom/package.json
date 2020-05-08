@@ -4,7 +4,7 @@
   "description": "Alexa HelloWorld example with NodeJS",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --format junit --output-file eslint.xml",
+    "lint": "eslint . --format junit --output-file reports/eslint/eslint.xml",
     "lint-fix": "eslint --fix .",
     "test": "mocha --reporter mocha-multi-reporters --reporter-options configFile=mocha.json",
     "copy-package": "cpy package.json src/",
