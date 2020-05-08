@@ -7,7 +7,7 @@
     "lint": "eslint . --format junit --output-file reports/eslint/eslint.xml",
     "lint-html": "eslint . -f node_modules/eslint-detailed-reporter/lib/detailed.js -o reports/eslint/report.html",
     "lint-fix": "eslint --fix .",
-    "codecov": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && codecov ",
+    "codecov": "nyc npm test && nyc report --reporter=text-lcov > coverage.lcov && codecov -y codecon.yml",
     "test": "mocha --reporter mocha-multi-reporters --reporter-options configFile=mocha.json",
     "copy-package": "cpy package.json src/",
     "build-production": "npm install --production",
