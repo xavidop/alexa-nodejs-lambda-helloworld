@@ -4,3 +4,5 @@ package-lock.json
 local-debugger.js
 *.xml
 mochawesome-report/
+.nyc_output/
+*.lcov

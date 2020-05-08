@@ -5,3 +5,5 @@ test-results.xml
 eslint.xml
 lambda/custom/src/package.json
 mochawesome-report/
+.nyc_output/
+*.lcov
