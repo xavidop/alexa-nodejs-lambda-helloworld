@@ -8,12 +8,12 @@ Run with 'mocha examples/skill-sample-nodejs-hello-world/helloworld-tests.js'.
 
 // include the testing framework
 const alexaTest = require('alexa-skill-test-framework');
-const languageStrings = require('../utilities/languageStrings');
+const languageStrings = require('../src/utilities/languageStrings.js');
 
 
 // initialize the testing framework
 alexaTest.initialize(
-  require('../index.js'),
+  require('../src/index.js'),
   'amzn1.ask.skill.00000000-0000-0000-0000-000000000000',
   'amzn1.ask.account.VOID');
 

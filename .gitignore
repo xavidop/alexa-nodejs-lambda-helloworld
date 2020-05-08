@@ -3,3 +3,4 @@ package-lock.json
 .DS_Store
 test-results.xml
 eslint.xml
+lambda/custom/src/package.json

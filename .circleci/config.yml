@@ -31,7 +31,6 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: ls -la
       - run: cd lambda/custom && npm run lint
       - store_test_results:
           path: lambda/custom/
@@ -44,7 +43,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: ls -la
+      - run: rm -rf lambda/custom/eslint.xml
       - run: cd lambda/custom && npm run test
       - store_test_results:
           path: lambda/custom/
@@ -57,7 +56,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: ls -la
+      - run: npm run build-production
       - run: ask deploy --debug --force
       - persist_to_workspace:
           root: /home/node/
@@ -68,7 +67,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: ls -la
+      - run: rm -rf lambda/custom/src/node_modules
       - run: rm -rf lambda/custom/node_modules
       - store_artifacts:
           path: ./

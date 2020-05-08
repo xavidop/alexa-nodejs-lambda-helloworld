@@ -11,7 +11,7 @@
                 // port number on your local host where the alexa requests will be routed to
                 "--portNumber", "3001",
                 // name of your nodejs main skill file
-                "--skillEntryFile", "${workspaceRoot}/lambda/custom/index.js",
+                "--skillEntryFile", "${workspaceRoot}/lambda/custom/src/index.js",
                 // name of your lambda handler
                 "--lambdaHandler", "handler"
             ]

@@ -22,7 +22,7 @@
     "apis": {
       "custom": {
         "endpoint": {
-          "sourceDir": "lambda/custom",
+          "sourceDir": "lambda/custom/src",
           "uri": "ask-custom-alexa-nodejs-lambda-helloworld-default"
         }
       }
