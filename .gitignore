@@ -4,3 +4,4 @@ package-lock.json
 test-results.xml
 eslint.xml
 lambda/custom/src/package.json
+mochawesome-report/
