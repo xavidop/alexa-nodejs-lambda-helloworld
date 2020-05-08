@@ -57,12 +57,12 @@ jobs:
           root: /home/node/
           paths:
             - project
-  coveralls:
+  codecov:
     executor: ask-executor
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd lambda/custom && npm run coveralls
+      - run: cd lambda/custom && npm run codecov
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -101,7 +101,7 @@ workflows:
         - test:
             requires:
               - pretest
-        - coveralls:
+        - codecov:
             requires:
               - test
         - deploy:

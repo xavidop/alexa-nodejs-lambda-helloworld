@@ -1,4 +1,6 @@
 ![CircleCI](https://circleci.com/gh/xavidop/alexa-nodejs-lambda-helloworld.svg?style=svg)
+[![codecov](https://codecov.io/gh/xavidop/alexa-nodejs-lambda-helloworld/branch/master/graph/badge.svg)](https://codecov.io/gh/xavidop/alexa-nodejs-lambda-helloworld)
+
 # Alexa Skill with Node.js
 
 Alexa skills can be developed using Alexa Lambda functions or a REST API endpoint. 
