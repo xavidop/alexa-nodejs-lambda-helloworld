@@ -61,11 +61,11 @@ The checkout job will execute the following tasks:
             - project
 ```
 
-### build
+### Build
 
 The build job will execute the following tasks:
 1. Restore the code that we have downloaded in the previous step in `/home/node/project` folder
-2. Run `npm install` in order to download all the Node.js dependencies
+2. Run `npm install` in order to download all the Node.js dependencies, including dev dependencies.
 3. Persist again the code that we will reuse in the next job
 
 ```yaml
@@ -83,35 +83,26 @@ The build job will execute the following tasks:
 
 ```
 
+### Pretests
+
+The pretest job will execute the static code quality check. Check the full explanation [here](docs/ESLINT.md).
+
 ### Test
 
-The test job will execute the following tasks:
-1. Restore the code that we have used in the previous step in `/home/node/project` folder
-2. Run `npm run test` in order to execute all Unit tests
-3. Persist again the code that we will reuse in the next job
+The test job will execute the unit tests. Check the full explanation [here](docs/UNITTESTS.md).
 
-```yaml
-  test:
-    executor: ask-executor
-    steps:
-      - attach_workspace:
-          at: /home/node/
-      - run: ls -la
-      - run: cd lambda/custom && npm run test
-      - persist_to_workspace:
-          root: /home/node/
-          paths:
-            - project
-```
+### Code Coverage
 
-**NOTE:** As this is our first hand on with CircleCI and DevOps with Alexa, there are no tests defined. We will define unit tests and code style checkers soon.
+The codecov job will execute the code coverage report. Check the full explanation [here](docs/CODECOV.md).
 
 ### Deploy
 
 The deploy job will execute the following tasks:
 1. Restore the code that we have used in the previous step in `/home/node/project` folder
-2. Run `ask deploy --debug --force` in order to download all the Node.js dependencies
-3. Persist again the code that we will reuse in the next job
+2. Copy the `package.json` to `src/` folder.
+3. Execute the `npm run build-production` command that will install only the production libraries in the `src/` folder.
+4. Run `ask deploy --debug --force` that will deploy all the code in `src/` folder as an AWS lambda.
+5. Persist again the code that we will reuse in the next job
 
 ```yaml
   deploy:
@@ -119,7 +110,8 @@ The deploy job will execute the following tasks:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: ls -la
+      - run: cd lambda/custom && npm run copy-package
+      - run: cd lambda/custom/src && npm run build-production
       - run: ask deploy --debug --force
       - persist_to_workspace:
           root: /home/node/
@@ -171,16 +163,21 @@ At the end of the CircleCi configuration file, we will define our pipeline as a 
         - build:
             requires:
               - checkout
-        - test:
+        - pretest:
             requires:
               - build
+        - test:
+            requires:
+              - pretest
+        - codecov:
+            requires:
+              - test
         - deploy:
             requires:
               - test
         - store-artifacts:
             requires:
               - deploy
-
 ```
 
 The CircleCI configuration file is located in `.circleci/config.yml`.
@@ -188,12 +185,10 @@ The CircleCI configuration file is located in `.circleci/config.yml`.
 ## Future steps
 
 As you notice, this is the first step of DevOps our Alexa Skill. I will be continue working on add some new jobs to these pipeline:
-1. Unit tests and JavaScript code style checkers (Linters)
-2. Code coverage using [Codecov](https://codecov.io/)
-3. Detect Utterance conflicts using ASK CLI command `ask api get-conflicts –s <skill-id> -l <locale>`
-4. Test utterance resolutions using ASK CLI command `ask api nlu-profile –-utterance "hello there" -s <skill-id> -l <locale>`
-5. Evaluate and test our interaction model using ASK CLI command `ask api evaluate-nlu -a <annotation-id> -s <skill-id> -l <locale>`
-6. End-to-end testing with [Bespoken](https://bespoken.io/)
+1. Detect Utterance conflicts using ASK CLI command `ask api get-conflicts –s <skill-id> -l <locale>`
+2. Test utterance resolutions using ASK CLI command `ask api nlu-profile –-utterance "hello there" -s <skill-id> -l <locale>`
+3. Evaluate and test our interaction model using ASK CLI command `ask api evaluate-nlu -a <annotation-id> -s <skill-id> -l <locale>`
+4. End-to-end testing with [Bespoken](https://bespoken.io/)
 
 ## Resources
 * [DevOps Wikipedia](https://en.wikipedia.org/wiki/DevOps) - Wikipedia reference

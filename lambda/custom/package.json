@@ -27,7 +27,7 @@
     "i18next-sprintf-postprocessor": "^0.2.2"
   },
   "devDependencies": {
-    "alexa-skill-test-framework": "^1.2.4",
+    "ask-sdk-test": "^2.3.0",
     "chai": "^4.2.0",
     "codecov": "^3.6.5",
     "cpy-cli": "^3.1.0",

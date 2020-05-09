@@ -66,13 +66,16 @@ These are the main files of the project:
     ├───hooks
     ├───lambda
     │   └───custom
-    │         ├───errors
-    │         ├───intents
-    │         ├───interceptors
-    │         ├───utilities
-    │         ├─── index.js
-    │         ├─── local-debugger.js
-    │         └─── package.json
+    │        ├───test
+    │        │    └─── helloworld-tests.js
+    │        └───src
+    │             ├───errors
+    │             ├───intents
+    │             ├───interceptors
+    │             ├─── utilities
+    │             ├─── index.js
+    │             ├─── local-debugger.js
+    │             └─── package.json
     ├───models
     │       es-ES.json
     └───skill.json
@@ -84,7 +87,7 @@ These are the main files of the project:
 * hooks: A folder that contains the hook scripts. Amazon provides two hooks, post_new_hook and pre_deploy_hook.
   * `post_new_hook`: executed after the Skill creation. Inn Node.js runs `npm install` in each sourceDir in `skill.json`
   * `pre_deploy_hook`: executed before the Skill deployment. In Node.js runs `npm install` in each sourceDir in `skill.json` as well.
-* lambda/custom: A folder that contains the source code for the skill's AWS Lambda function:
+* lambda/custom/src/: A folder that contains the source code for the skill's AWS Lambda function:
   * `index.js`: the lambda main entry point.
   * `utilities/languageStrings.js`: i18n dictionaries used by the library `i18next` which allow us to run same in Skill in different configuration languages.
   * `package.json`: this file is core to the Node.js ecosystem and is a basic part of understanding and working with Node.js, npm, and even modern JavaScript
@@ -93,6 +96,7 @@ These are the main files of the project:
   * `errors`: folder that contains all Error handlers.
   * `intents`: folder that contains all Intent handlers.
   * `interceptors`: here you can find all interceptors.
+* lambda/custom/test/: A folder that contains the source code for tests.
 * models – A folder that contains interaction models for the skill. Each interaction model is defined in a JSON file named according to the locale. For example, es-ES.json.
 * `skill.json` – The skill manifest. One of the most important files in our project.
 
@@ -103,7 +107,7 @@ The ASK SDK for Node.js makes it easier for you to build highly engaging skills 
 
 You can find documentation, samples and helpful links in their official [GitHub repository](https://github.com/alexa/alexa-skills-kit-sdk-for-nodejs)
 
-The main Javascript file in our lambda project is `index.js` located in `lambda/custom` folder. This file contains all handlers, interceptors and exports the Skill handler in `exports.handler`.
+The main Javascript file in our lambda project is `index.js` located in `lambda/custom/src` folder. This file contains all handlers, interceptors and exports the Skill handler in `exports.handler`.
 
 The `exports.handler` function is executed every time AWS Lambda is initiated for this particular function. 
 In theory, an AWS Lambda function is just a single function. This means that we need to define dispatching logic so a single function request can route to appropriate code, hence the handlers.
@@ -218,7 +222,7 @@ The `launch.json` file in `.vscode` folder has the configuration for Visual Stud
                 // port number on your local host where the alexa requests will be routed to
                 "--portNumber", "3001",
                 // name of your Node.js main skill file
-                "--skillEntryFile", "${workspaceRoot}/lambda/custom/index.js",
+                "--skillEntryFile", "${workspaceRoot}/lambda/custom/src/index.js",
                 // name of your lambda handler
                 "--lambdaHandler", "handler"
             ]
@@ -231,7 +235,7 @@ This configuration file will execute the following command:
 
 ```bash
 
-  node --inspect-brk=28448 lambda\custom\local-debugger.js --portNumber 3001 --skillEntryFile lambda/custom/index.js --lambdaHandler handler
+  node --inspect-brk=28448 lambda\custom\local-debugger.js --portNumber 3001 --skillEntryFile lambda/custom/src/index.js --lambdaHandler handler
 
 ```
 
@@ -366,7 +370,7 @@ After the execution of the above command, we will have the `config` file properl
               ],
               "arn": "arn:aws:lambda:us-east-1:141568529918:function:ask-custom-alexa-nodejs-lambda-helloworld-default",
               "awsRegion": "us-east-1",
-              "codeUri": "lambda/custom",
+              "codeUri": "lambda/custom/src",
               "functionName": "ask-custom-alexa-nodejs-lambda-helloworld-default",
               "handler": "index.handler",
               "revisionId": "ef2707ee-a366-484d-a4b7-3826a44692dd",
