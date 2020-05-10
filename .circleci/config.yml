@@ -102,6 +102,16 @@ jobs:
           root: /home/node/
           paths:
             - project
+  dialog:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: cd test/ && ./simple-dialog-checker $SKILL_ID
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
   store-artifacts:
     executor: ask-executor
     steps:
@@ -139,6 +149,9 @@ workflows:
         - check-utterance-evaluation:
             requires:
               - deploy
-        - store-artifacts:
+        - dialog:
             requires:
               - check-utterance-evaluation
+        - store-artifacts:
+            requires:
+              - dialog
