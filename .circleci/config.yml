@@ -107,7 +107,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./simple-dialog-checker $SKILL_ID
+      - run: cd test/ && ./simple-dialog-checker.sh $SKILL_ID
       - persist_to_workspace:
           root: /home/node/
           paths:
