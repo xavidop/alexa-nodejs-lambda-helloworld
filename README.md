@@ -146,7 +146,7 @@ It is important to take a look into the `LaunchRequestHandler` as an example of 
       },
       //Method that will process the request if the method above returns true
       handle(handlerInput) {
-          const speakOutput = handlerInput.t('WELCOME_MSG');
+          const speakOutput = i18n.t('WELCOME_MSG');
 
           return handlerInput.responseBuilder
               .speak(speakOutput)

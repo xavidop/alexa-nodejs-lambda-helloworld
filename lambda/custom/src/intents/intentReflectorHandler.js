@@ -1,6 +1,7 @@
 'use strict';
 
 const Alexa = require('ask-sdk-core');
+const i18n = require('i18next');
 
 
 /* *
@@ -15,7 +16,7 @@ module.exports = {
     },
     handle(handlerInput) {
       const intentName = Alexa.getIntentName(handlerInput.requestEnvelope);
-      const speakOutput = handlerInput.t('REFLECTOR_MSG', {intentName: intentName});
+      const speakOutput = i18n.t('REFLECTOR_MSG', {intentName: intentName});
 
       return handlerInput.responseBuilder
         .speak(speakOutput)

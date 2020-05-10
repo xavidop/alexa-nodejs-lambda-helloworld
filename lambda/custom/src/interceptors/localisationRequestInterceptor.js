@@ -13,8 +13,6 @@ module.exports = {
       i18n.init({
         lng: Alexa.getLocale(handlerInput.requestEnvelope),
         resources: languageStrings,
-      }).then((t) => {
-        handlerInput.t = (...args) => t(...args);
       });
     },
   },

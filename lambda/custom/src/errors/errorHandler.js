@@ -1,5 +1,5 @@
 'use strict';
-
+const i18n = require('i18next');
 /**
  * Generic error handling to capture any syntax or routing errors. If you receive an error
  * stating the request handler chain is not found, you have not implemented a handler for
@@ -11,7 +11,7 @@ module.exports = {
       return true;
     },
     handle(handlerInput, error) {
-      const speakOutput = handlerInput.t('ERROR_MSG');
+      const speakOutput = i18n.t('ERROR_MSG');
       console.log(`~~~~ Error handled: ${JSON.stringify(error)}`);
 
       return handlerInput.responseBuilder

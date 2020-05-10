@@ -1,6 +1,7 @@
 'use strict';
 
 const Alexa = require('ask-sdk-core');
+const i18n = require('i18next');
 
 module.exports = {
   HelloWorldIntentHandler: {
@@ -9,7 +10,7 @@ module.exports = {
                 && Alexa.getIntentName(handlerInput.requestEnvelope) === 'HelloWorldIntent';
     },
     handle(handlerInput) {
-      const speakOutput = handlerInput.t('HELLO_MSG');
+      const speakOutput = i18n.t('HELLO_MSG');
 
       return handlerInput.responseBuilder
         .speak(speakOutput)
