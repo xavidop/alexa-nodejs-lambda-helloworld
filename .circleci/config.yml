@@ -86,20 +86,12 @@ jobs:
       - attach_workspace:
           at: /home/node/
       - run: cd test/ && ./interaction_model_checker.sh $SKILL_ID v1
-      - persist_to_workspace:
-          root: /home/node/
-          paths:
-            - project
   check-utterance-resolution:
     executor: ask-executor
     steps:
       - attach_workspace:
           at: /home/node/
       - run: cd test/ && ./utterance_resolution_checker.sh $SKILL_ID v1
-      - persist_to_workspace:
-          root: /home/node/
-          paths:
-            - project
   check-utterance-evaluation:
     executor: ask-executor
     steps:
