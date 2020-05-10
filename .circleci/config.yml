@@ -149,6 +149,4 @@ workflows:
               - deploy
         - store-artifacts:
             requires:
-              - check-utterance-conflicts
-              - check-utterance-resolution
               - check-utterance-evaluation
