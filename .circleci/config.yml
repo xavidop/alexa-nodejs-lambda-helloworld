@@ -11,6 +11,7 @@ jobs:
     steps:
       - checkout
       - run: chmod +x -R ./hooks
+      - run: chmod +x -R ./test
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -79,6 +80,30 @@ jobs:
           root: /home/node/
           paths:
             - project
+  check-utterance-conflicts:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: cd test/ && ./interaction_model_checker.sh $SKILL_ID v1
+      - store_artifacts:
+          path: ./
+  check-utterance-resolutions:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: cd test/ && ./utterance_resolution_checker.sh $SKILL_ID v1
+      - store_artifacts:
+          path: ./
+  check-utterance-evaluation:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: cd test/ && ./utterance_evaluation_checker.sh $SKILL_ID v1
+      - store_artifacts:
+          path: ./
   store-artifacts:
     executor: ask-executor
     steps:
@@ -107,6 +132,17 @@ workflows:
         - deploy:
             requires:
               - test
-        - store-artifacts:
+        - check-utterance-conflicts:
             requires:
               - deploy
+        - check-utterance-resolution:
+            requires:
+              - deploy
+        - check-utterance-evaluation:
+            requires:
+              - deploy
+        - store-artifacts:
+            requires:
+              - check-utterance-conflicts
+              - check-utterance-resolution
+              - check-utterance-evaluation
