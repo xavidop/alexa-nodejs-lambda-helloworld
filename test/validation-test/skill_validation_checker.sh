@@ -3,7 +3,7 @@ skill_id=$1
 
 cli_version=$2
 
-echo "######### Checking Conflicts #########"
+echo "######### Checking validations #########"
 
 if [[ ${cli_version} == *"v1"* ]]
 then
@@ -18,7 +18,7 @@ for d in ${folder}; do
     file_name="${d##*/}"
     locale="${file_name%.*}"
 
-    echo "Checking conflicts for locale: ${locale}"
+    echo "Checking validations for locale: ${locale}"
     echo "###############################"
 
     if [[ ${cli_version} == *"v1"* ]]

@@ -143,6 +143,12 @@ jobs:
       - run: rm -rf lambda/custom/node_modules
       - store_artifacts:
           path: ./
+  submit:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: cd test/submit/ && ./submit.sh $SKILL_ID v1
 workflows:
     skill-pipeline:
       jobs:
@@ -187,3 +193,6 @@ workflows:
             type: approval
             requires:
               - store-artifacts
+        - submit:
+            requires:
+              - wait-for-decision
