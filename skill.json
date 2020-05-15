@@ -40,8 +40,8 @@
       "isExportCompliant": true,
       "locales": {
         "es-ES": {
-          "privacyPolicyUrl":"http://www.myprivacypolicy.sampleskill.com",
-          "termsOfUseUrl":"http://www.termsofuse.sampleskill.com"
+          "privacyPolicyUrl":"https://xavidop.github.io/",
+          "termsOfUseUrl":"https://xavidop.github.io/"
         }
       },
       "usesPersonalInfo": false
