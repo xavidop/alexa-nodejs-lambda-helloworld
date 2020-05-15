@@ -84,7 +84,7 @@ This job will execute the following tasks:
 
 ```yaml
 
-  dialog:
+  integration-test:
     executor: ask-executor
     steps:
       - attach_workspace:

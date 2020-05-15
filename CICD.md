@@ -195,12 +195,12 @@ At the end of the CircleCi configuration file, we will define our pipeline as a 
         - check-utterance-evaluation:
             requires:
               - deploy
-        - dialog:
+        - integration-test:
             requires:
               - check-utterance-evaluation
         - store-artifacts:
             requires:
-              - dialog
+              - integration-test
 ```
 
 The CircleCI configuration file is located in `.circleci/config.yml`.

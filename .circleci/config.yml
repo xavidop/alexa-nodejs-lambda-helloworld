@@ -102,12 +102,12 @@ jobs:
           root: /home/node/
           paths:
             - project
-  dialog:
+  integration-test:
     executor: ask-executor
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/integration-test/ && ./simple-dialog-checker.sh $SKILL_ID
+      - run: cd test/integration-test/ && ./simple-dialog-checker.sh $SKILL_ID v1
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -171,19 +171,19 @@ workflows:
         - check-utterance-evaluation:
             requires:
               - deploy
-        - dialog:
+        - integration-test:
             requires:
               - check-utterance-evaluation
         - end-to-end-test:
             requires:
-              - dialog
+              - integration-test
         - validation-test:
             requires:
               - end-to-end-test
+        - store-artifacts:
+            requires:
+              - validation-test
         - wait-for-decision:
             type: approval
             requires:
-              - validation-test
-        - store-artifacts:
-            requires:
-              - wait-for-decision
+              - store-artifacts
