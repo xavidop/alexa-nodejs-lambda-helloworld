@@ -7,7 +7,7 @@ echo "######### Submiting Skill for certification without publishing #########"
 
 if [[ ${cli_version} == *"v1"* ]]
 then
-    $(ask api submit -s ${skill_id} --publication-method MANUAL_PUBLISHING)
+    submit=$(ask api submit -s ${skill_id} --publication-method MANUAL_PUBLISHING)
 else
-    $(ask smapi submit-skill-for-certification -s ${skill_id} --publication-method MANUAL_PUBLISHING)
+    submit=$(ask smapi submit-skill-for-certification -s ${skill_id} --publication-method MANUAL_PUBLISHING)
 fi
