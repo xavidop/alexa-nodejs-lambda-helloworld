@@ -6,6 +6,8 @@
           "name": "alexa-nodejs-lambda-helloworld",
           "summary": "Sample Short Description",
           "description": "Sample Full Description",
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/d41b/ac8737839f8c4827ba8ab45f1b31bf46/APP_ICON_LARGE?versionId=AKw0js1xfnuMN99zaYD.lqTbVNaxIjYd&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200515T182541Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QDXWFVRR3%2F20200515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=3dc942a45831160bbd9b6e6ae498df51262ad83e86ae287dc51ade2eba5954ea",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/84ab/554d87d420004d83b3e4d2f17ac285f9/APP_ICON?versionId=Mo98GTmHsw9nue9LDh1A8Hfa8pv51ohQ&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200515T182541Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QDXWFVRR3%2F20200515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=d24bf151a026685b7978b20767aa745326d8304b126d601dc2ebf0e888eabf28",
           "examplePhrases": [
             "Alexa abre hola mundo",
             "hola",
@@ -13,6 +15,9 @@
           ],
           "keywords": []
         }
+      },
+      "automaticDistribution": {
+        "isActive": false
       },
       "isAvailableWorldwide": true,
       "testingInstructions": "Sample Testing Instructions.",
@@ -27,6 +32,16 @@
         }
       }
     },
-    "manifestVersion": "1.0"
+    "manifestVersion": "1.0",
+    "privacyAndCompliance": {
+      "allowsPurchases": false,
+      "containsAds": false,
+      "isChildDirected": false,
+      "isExportCompliant": true,
+      "locales": {
+        "es-ES": {}
+      },
+      "usesPersonalInfo": false
+    }
   }
 }
