@@ -24,16 +24,16 @@ for d in ../models/*; do
     then
         conflicts=$(ask api get-conflicts -s ${skill_id} -l ${locale})
     else
-        #Bug opened: https://github.com/alexa/ask-cli/issues/180
-        conflicts=$(ask smapi get-conflicts -s ${skill_id} -l ${locale})
+        conflicts=$(ask smapi get-conflicts-for-interaction-model -s ${skill_id} -l ${locale} -g development --vers ~current)
     fi
 
-    if [[ ${conflicts} == "{}" ]]
+    number_conflicts=$(jq ".paginationContext.totalCount" <<< ${conflicts})
+
+    if [[ -z ${number_conflicts} || ${number_conflicts} == "null" ]]
     then
         echo "No Conflicts detected"
         exit 0
     else
-        number_conflicts=$(jq ".paginationContext.totalCount" <<< ${conflicts})
         echo "Number of conflicts detected: ${number_conflicts}"
         echo "Conflicts: ${conflicts}"
         exit 1

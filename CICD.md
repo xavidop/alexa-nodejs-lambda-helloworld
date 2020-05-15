@@ -1,3 +1,6 @@
+![CircleCI](https://circleci.com/gh/xavidop/alexa-nodejs-lambda-helloworld.svg?style=svg)
+[![codecov](https://codecov.io/gh/xavidop/alexa-nodejs-lambda-helloworld/branch/master/graph/badge.svg)](https://codecov.io/gh/xavidop/alexa-nodejs-lambda-helloworld)
+
 # DevOps your Skill
 
 "DevOps is the union of people, process, and products to enable continuous delivery of value to our end users." - Donovan Brown, Microsoft
@@ -131,6 +134,14 @@ And configure the `__ENVIRONMENT_ASK_PROFILE__` profile in your `.ask/config` fi
 
 How to obtain these variables and how to configure this profile are explained in [this post](https://github.com/xavidop/alexa-ask-aws-cli-docker)
 
+### Testing the Voice User Interface
+
+Theses jobs will check our interaction model. Check the full explanation [here](docs/VUITESTS.md).
+
+### Integration tests
+
+Theses jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/INTEGRATIONTESTS.md).
+
 ### Store-artifacts
 
 The store-artifacts job will execute the following taks:
@@ -175,9 +186,21 @@ At the end of the CircleCi configuration file, we will define our pipeline as a 
         - deploy:
             requires:
               - test
-        - store-artifacts:
+        - check-utterance-conflicts:
             requires:
               - deploy
+        - check-utterance-resolution:
+            requires:
+              - deploy
+        - check-utterance-evaluation:
+            requires:
+              - deploy
+        - dialog:
+            requires:
+              - check-utterance-evaluation
+        - store-artifacts:
+            requires:
+              - dialog
 ```
 
 The CircleCI configuration file is located in `.circleci/config.yml`.
@@ -185,10 +208,7 @@ The CircleCI configuration file is located in `.circleci/config.yml`.
 ## Future steps
 
 As you notice, this is the first step of DevOps our Alexa Skill. I will be continue working on add some new jobs to these pipeline:
-1. Detect Utterance conflicts using ASK CLI command `ask api get-conflicts –s <skill-id> -l <locale>`
-2. Test utterance resolutions using ASK CLI command `ask api nlu-profile –-utterance "hello there" -s <skill-id> -l <locale>`
-3. Evaluate and test our interaction model using ASK CLI command `ask api evaluate-nlu -a <annotation-id> -s <skill-id> -l <locale>`
-4. End-to-end testing with [Bespoken](https://bespoken.io/)
+1. End-to-end testing with [Bespoken](https://bespoken.io/)
 
 ## Resources
 * [DevOps Wikipedia](https://en.wikipedia.org/wiki/DevOps) - Wikipedia reference

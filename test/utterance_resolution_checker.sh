@@ -35,7 +35,6 @@ for d in  ${folder}; do
         then
             resolution=$(ask api nlu-profile -s ${skill_id} -l ${locale} --utterance "${utterance}")
         else
-            #Bug opened: https://github.com/alexa/ask-cli/issues/179
             resolution=$(ask smapi profile-nlu -s ${skill_id} -l ${locale} --utterance "${utterance}" -g development)
         fi
 
