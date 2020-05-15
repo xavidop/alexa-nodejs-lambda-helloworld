@@ -221,6 +221,8 @@ It is necessary to write unit tests constantly.
 
 I hope this example project is useful to you.
 
+You can write unit tests with Bespoken as well. See documentation [here](https://read.bespoken.io/unit-testing/getting-started/#setup)
+
 That's all folks!
 
 Happy coding!

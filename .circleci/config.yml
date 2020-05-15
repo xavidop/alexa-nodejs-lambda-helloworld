@@ -85,19 +85,19 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./interaction_model_checker.sh $SKILL_ID v1
+      - run: cd test/vui-test/ && ./interaction_model_checker.sh $SKILL_ID v1
   check-utterance-resolution:
     executor: ask-executor
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./utterance_resolution_checker.sh $SKILL_ID v1
+      - run: cd test/vui-test/ && ./utterance_resolution_checker.sh $SKILL_ID v1
   check-utterance-evaluation:
     executor: ask-executor
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./utterance_evaluation_checker.sh $SKILL_ID v1
+      - run: cd test/vui-test/ && ./utterance_evaluation_checker.sh $SKILL_ID v1
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -107,7 +107,29 @@ jobs:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./simple-dialog-checker.sh $SKILL_ID
+      - run: cd test/integration-test/ && ./simple-dialog-checker.sh $SKILL_ID
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
+  end-to-end-test:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: bst test --config test/e2e-bespoken-test/testing.json
+      - store_artifacts:
+          path: test_output/
+      - persist_to_workspace:
+          root: /home/node/
+          paths:
+            - project
+  validation-test:
+    executor: ask-executor
+    steps:
+      - attach_workspace:
+          at: /home/node/
+      - run: cd test/integration-test/ && ./skill_validation_checker.sh $SKILL_ID
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -152,6 +174,12 @@ workflows:
         - dialog:
             requires:
               - check-utterance-evaluation
-        - store-artifacts:
+        - end-to-end-test:
             requires:
               - dialog
+        - validation-test:
+            requires:
+              - end-to-end-test
+        - store-artifacts:
+            requires:
+              - validation-test

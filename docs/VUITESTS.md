@@ -47,7 +47,7 @@ To know the conflicts, we will use the ASK CLI command:
     ask smapi get-conflicts-for-interaction-model -s ${skill_id} -l ${locale} -g development --vers ~current
 ```
 
-Those commands are integrated in the bash script file `test/interaction_model_checker.sh`.
+Those commands are integrated in the bash script file `test/vui-test/interaction_model_checker.sh`.
 
 Here you can find the full bash script:
 
@@ -121,7 +121,7 @@ To run utterance resolutions, we will use the ASK CLI command:
     ask smapi profile-nlu -s ${skill_id} -l ${locale} --utterance "${utterance}" -g development
 ```
 
-Those commands are integrated in the bash script file `test/utterance_resolution_checker.sh`.
+Those commands are integrated in the bash script file `test/vui-test/utterance_resolution_checker.sh`.
 
 Here you can find the full bash script:
 
@@ -228,7 +228,7 @@ This is an asynchronous process. so we have to start the evaluation with one com
     ask smapi get-nlu-evaluation --evaluation-id ${id} -s ${skill_id}
 ```
 
-Those commands are integrated in the bash script file `test/utterance_evaluation_checker.sh`.
+Those commands are integrated in the bash script file `test/vui-test/utterance_evaluation_checker.sh`.
 
 Here you can find the full bash script:
 
@@ -351,7 +351,7 @@ This job will execute the following tasks:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./interaction_model_checker.sh $SKILL_ID v1
+      - run: cd test/vui-test/ && ./interaction_model_checker.sh $SKILL_ID v1
 ```
 
 ### 2. check-utterance-resolution
@@ -366,7 +366,7 @@ This job will execute the following tasks:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./utterance_resolution_checker.sh $SKILL_ID v1
+      - run: cd test/vui-test/ && ./utterance_resolution_checker.sh $SKILL_ID v1
 ```
 
 ### 3. check-utterance-evaluation
@@ -382,7 +382,7 @@ This job will execute the following tasks:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./utterance_evaluation_checker.sh $SKILL_ID v1
+      - run: cd test/vui-test/ && ./utterance_evaluation_checker.sh $SKILL_ID v1
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -394,7 +394,7 @@ This job will execute the following tasks:
 
 ## Resources
 * [DevOps Wikipedia](https://en.wikipedia.org/wiki/DevOps) - Wikipedia reference
-* [Official Alexa SDK Test Framework Documentation](https://github.com/taimos/ask-sdk-test) - Alexa SDK Test Framework Documentation
+* [Official Alexa Skill Management API Documentation](https://developer.amazon.com/es-ES/docs/alexa/smapi/skill-testing-operations.html) - Alexa Skill Management API Documentation
 * [Official CircleCI Documentation](https://circleci.com/docs/) - Official CircleCI Documentation
 
 ## Conclusion 

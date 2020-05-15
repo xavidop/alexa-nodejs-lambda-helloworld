@@ -136,11 +136,11 @@ How to obtain these variables and how to configure this profile are explained in
 
 ### Testing the Voice User Interface
 
-Theses jobs will check our interaction model. Check the full explanation [here](docs/VUITESTS.md).
+These jobs will check our interaction model. Check the full explanation [here](docs/VUITESTS.md).
 
 ### Integration tests
 
-Theses jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/INTEGRATIONTESTS.md).
+These jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/INTEGRATIONTESTS.md).
 
 ### Store-artifacts
 

@@ -41,7 +41,7 @@ This integration tests can be performed with the ASK CLI. we will use the follow
 
 With this command we will perform a simulation of a dialog with our Alexa Skill using plaint text as input. So with that, we can test that all software components are running properly.
 
-Those commands are integrated in the bash script file `test/simple-dialog-checker.sh`.
+Those commands are integrated in the bash script file `test/integration-test/simple-dialog-checker.sh`.
 
 Here you can find the full bash script:
 
@@ -89,7 +89,7 @@ This job will execute the following tasks:
     steps:
       - attach_workspace:
           at: /home/node/
-      - run: cd test/ && ./simple-dialog-checker.sh $SKILL_ID
+      - run: cd test/integration-test/ && ./simple-dialog-checker.sh $SKILL_ID
       - persist_to_workspace:
           root: /home/node/
           paths:
@@ -102,7 +102,7 @@ This job will execute the following tasks:
 
 ## Resources
 * [DevOps Wikipedia](https://en.wikipedia.org/wiki/DevOps) - Wikipedia reference
-* [Official Alexa SDK Test Framework Documentation](https://github.com/taimos/ask-sdk-test) - Alexa SDK Test Framework Documentation
+* [Official Alexa Skill Management API Documentation](https://developer.amazon.com/es-ES/docs/alexa/smapi/skill-testing-operations.html) - Alexa Skill Management API Documentation
 * [Official CircleCI Documentation](https://circleci.com/docs/) - Official CircleCI Documentation
 
 ## Conclusion 
@@ -110,6 +110,9 @@ This job will execute the following tasks:
 Check that all components of our application are running properly is one of the most important things in every pipeline. 
 These tests are used to test the application infrastructure and its components. This is why these tests are very relevant in our pipeline.
 Thanks to the ASK CLI we can perform this complex tests.
+
+You can write integration tests with Bespoken as well. See documentation [here](https://read.bespoken.io/end-to-end/guide/#overview). And set type test to `simulation` isntead of `e2e`
+
 
 I hope this example project is useful to you.
 

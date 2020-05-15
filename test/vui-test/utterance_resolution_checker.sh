@@ -7,9 +7,9 @@ echo "######### Checking Utterance Resolutions #########"
 
 if [[ ${cli_version} == *"v1"* ]]
 then
-    folder="../models/*"
+    folder="../../models/*"
 else
-    folder="../skill-package/interactionModels/*"
+    folder="../../skill-package/interactionModels/*"
 fi
 
 for d in  ${folder}; do

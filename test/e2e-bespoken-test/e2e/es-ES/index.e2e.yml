@@ -1,0 +1,25 @@
+# This is the test file for your e2e tests, feel free to copy and modify the template test
+# for your voice app as many times as you want. On this same folder you'll also find a testing.json
+# file, it contains global configurations for future test files you might create in the future.
+#
+# Find more info on https://read.bespoken.io/end-to-end/getting-started/
+---
+configuration:
+  locale: es-ES
+  description: Test e2e con Bespoken
+---
+- test : Hola mundo test
+- abre hola mundo: "bienvenido puedes decir hola o ayuda"
+- hola: 
+
+---
+- test : Ayuda test con stop intent
+- abre hola mundo: "bienvenido puedes decir hola o ayuda"
+- ayuda: "puedes decirme hola * ayudar"
+- para: "hasta *"
+
+---
+- test : Ayuda test con cancel intent
+- abre hola mundo: "bienvenido puedes decir hola o ayuda"
+- ayuda: "puedes decirme hola * ayudar"
+- cancela: "hasta *"

@@ -7,12 +7,12 @@ echo "######### Checking Conflicts #########"
 
 if [[ ${cli_version} == *"v1"* ]]
 then
-    folder="../models/*"
+    folder="../../models/*"
 else
-    folder="../skill-package/interactionModels/*"
+    folder="../../skill-package/interactionModels/*"
 fi
 
-for d in ../models/*; do
+for d in ${folder}; do
 
     file_name="${d##*/}"
     locale="${file_name%.*}"
