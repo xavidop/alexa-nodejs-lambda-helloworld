@@ -39,7 +39,10 @@
       "isChildDirected": false,
       "isExportCompliant": true,
       "locales": {
-        "es-ES": {}
+        "es-ES": {
+          "privacyPolicyUrl":"http://www.myprivacypolicy.sampleskill.com",
+          "termsOfUseUrl":"http://www.termsofuse.sampleskill.com"
+        }
       },
       "usesPersonalInfo": false
     }
