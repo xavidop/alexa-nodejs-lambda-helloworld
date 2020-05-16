@@ -2,6 +2,30 @@
 [![codecov](https://codecov.io/gh/xavidop/alexa-nodejs-lambda-helloworld/branch/master/graph/badge.svg)](https://codecov.io/gh/xavidop/alexa-nodejs-lambda-helloworld)
 
 # DevOps your Skill
+<!-- TOC -->
+
+- [DevOps your Skill](#devops-your-skill)
+  - [Prerequisites](#prerequisites)
+  - [Dockerfile](#dockerfile)
+  - [Pipeline](#pipeline)
+    - [Checkout](#checkout)
+    - [Build](#build)
+    - [Pretests](#pretests)
+    - [Test](#test)
+    - [Code Coverage](#code-coverage)
+    - [Deploy](#deploy)
+    - [Testing the Voice User Interface](#testing-the-voice-user-interface)
+    - [Integration tests](#integration-tests)
+    - [End to end tests](#end-to-end-tests)
+    - [Validation tests](#validation-tests)
+    - [Store-artifacts](#store-artifacts)
+    - [Wait for Approval](#wait-for-approval)
+    - [Submit](#submit)
+  - [Workflow](#workflow)
+  - [Resources](#resources)
+  - [Conclusion](#conclusion)
+
+<!-- /TOC -->
 
 "DevOps is the union of people, process, and products to enable continuous delivery of value to our end users." - Donovan Brown, Microsoft
 
@@ -100,39 +124,7 @@ The codecov job will execute the code coverage report. Check the full explanatio
 
 ### Deploy
 
-The deploy job will execute the following tasks:
-1. Restore the code that we have used in the previous step in `/home/node/project` folder
-2. Copy the `package.json` to `src/` folder.
-3. Execute the `npm run build-production` command that will install only the production libraries in the `src/` folder.
-4. Run `ask deploy --debug --force` that will deploy all the code in `src/` folder as an AWS lambda.
-5. Persist again the code that we will reuse in the next job
-
-```yaml
-  deploy:
-    executor: ask-executor
-    steps:
-      - attach_workspace:
-          at: /home/node/
-      - run: cd lambda/custom && npm run copy-package
-      - run: cd lambda/custom/src && npm run build-production
-      - run: ask deploy --debug --force
-      - persist_to_workspace:
-          root: /home/node/
-          paths:
-            - project
-```
-**NOTE:** If you want to run successfully every ASK CLI command, you have to set up 5 environment variables:
-
-* `ASK_DEFAULT_PROFILE`
-* `ASK_ACCESS_TOKEN`
-* `ASK_REFRESH_TOKEN`
-* `ASK_VENDOR_ID`
-* `AWS_ACCESS_KEY_ID`
-* `AWS_SECRET_ACCESS_KEY`
-
-And configure the `__ENVIRONMENT_ASK_PROFILE__` profile in your `.ask/config` file.
-
-How to obtain these variables and how to configure this profile are explained in [this post](https://github.com/xavidop/alexa-ask-aws-cli-docker)
+The deploy job will deploy the Alexa Skill to the Alexa cloud in the development stage. Check the full explanation [here](docs/DEPLOY.md).
 
 ### Testing the Voice User Interface
 
@@ -140,11 +132,19 @@ These jobs will check our interaction model. Check the full explanation [here](d
 
 ### Integration tests
 
-These jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/INTEGRATIONTESTS.md).
+These jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/ENDTOENDTESTS.md).
+
+### End to end tests
+
+These jobs will check the full system using the voice as input. Check the full explanation [here](docs/INTEGRATIONTESTS.md).
+
+### Validation tests
+
+These jobs will check the full system using the voice as input. Check the full explanation [here](docs/VALIDATIONTESTS.md).
 
 ### Store-artifacts
 
-The store-artifacts job will execute the following taks:
+The store-artifacts job will execute the following tasks:
 1. Restore the code that we have used in the previous step in `/home/node/project` folder
 2. Clean `node_modules` folder
 3. Store the entire code of our Alexa Skill as an artifact. It will be accessible in CircleCI whenever we want to check it out.
@@ -162,7 +162,25 @@ The store-artifacts job will execute the following taks:
 
 ```
 
-### Workflow
+### Wait for Approval
+
+For times when you'd prefer to keep manual approvals in place, easily configure the manual approval process by adding to your workflow a special job containing a `type: approval` entry. This job it is needed in order to check whatever you want of your Alexa Skill before submitting it to certification and when everything is checked, you can approve or decline the execution.
+
+This job is a different job that only exists down the `workflows` node in the config file. It is not needed to add it as a `job`.
+
+```yaml
+
+  - wait-for-decision:
+      type: approval
+      requires:
+        - store-artifacts
+```
+
+### Submit
+
+These jobs will check the full system using the voice as input. Check the full explanation [here](docs/SUBMIT.md).
+
+## Workflow
 
 At the end of the CircleCi configuration file, we will define our pipeline as a CircleCI Workflow which will execute the jobs explained above:
 
@@ -198,17 +216,26 @@ At the end of the CircleCi configuration file, we will define our pipeline as a 
         - integration-test:
             requires:
               - check-utterance-evaluation
-        - store-artifacts:
+        - end-to-end-test:
             requires:
               - integration-test
+        - validation-test:
+            requires:
+              - end-to-end-test
+        - store-artifacts:
+            requires:
+              - validation-test
+        - wait-for-decision:
+            type: approval
+            requires:
+              - store-artifacts
+        - submit:
+            requires:
+              - wait-for-decision
 ```
 
 The CircleCI configuration file is located in `.circleci/config.yml`.
 
-## Future steps
-
-As you notice, this is the first step of DevOps our Alexa Skill. I will be continue working on add some new jobs to these pipeline:
-1. End-to-end testing with [Bespoken](https://bespoken.io/)
 
 ## Resources
 * [DevOps Wikipedia](https://en.wikipedia.org/wiki/DevOps) - Wikipedia reference

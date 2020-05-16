@@ -23,7 +23,7 @@ We will use this powerful tool to test our Voice User Interface. Let's start!
 
 ### Installation
 
-The ASK CLI is included in the [Docker image](https://hub.docker.com/repository/docker/xavidop/alexa-ask-aws-cli) we are using so it is not necessary to install.
+The ASK CLI is included in the [Docker image](https://hub.docker.com/repository/docker/xavidop/alexa-ask-aws-cli) we are using so it is not necessary to install anything else.
 
 ### Writing Tests
 
@@ -335,7 +335,7 @@ It is not necessary to integrate it in `package.json` file.
 
 ## Pipeline Jobs
 
-It is ready to run and test our VUI, let's add it to our pipeline!
+Everything is ready to run and test our VUI, let's add it to our pipeline!
 
 These 3 tests described above are defined in three different jobs that will run in parallel:
 

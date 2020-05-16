@@ -93,7 +93,7 @@ So, in this file we are going to add the following commands in the `script` json
 
 ## Pipeline Job
 
-It is fully installed, configured and integrated, let's add it to our pipeline!
+Everything is fully installed, configured and integrated, let's add it to our pipeline!
 
 This job will execute the following tasks:
 1. Restore the code that we have downloaded in the previous step in `/home/node/project` folder

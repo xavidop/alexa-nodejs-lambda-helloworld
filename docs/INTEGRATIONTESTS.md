@@ -24,7 +24,7 @@ We will use this powerful tool to test our Voice User Interface. Let's start!
 
 ### Installation
 
-The ASK CLI and the bash tool `expect` are included in the [Docker image](https://hub.docker.com/repository/docker/xavidop/alexa-ask-aws-cli) we are using so it is not necessary to install.
+The ASK CLI and the bash tool `expect` are included in the [Docker image](https://hub.docker.com/repository/docker/xavidop/alexa-ask-aws-cli) we are using so it is not necessary to install anything else.
 
 ### Writing integration tests
 
@@ -75,7 +75,7 @@ It is not necessary to integrate it in `package.json` file.
 
 ## Pipeline Job
 
-It is ready to run our integration tests, let's add it to our pipeline!
+Everything is ready to run our integration tests, let's add it to our pipeline!
 
 This job will execute the following tasks:
 1. Restore the code that we have downloaded in the previous step in `/home/node/project` folder
