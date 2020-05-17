@@ -132,7 +132,7 @@ These jobs will check our interaction model. Check the full explanation [here](d
 
 ### Integration tests
 
-These jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/INTEGRATIONTEST.md).
+These jobs will check the interaction model and our backend as well. Check the full explanation [here](docs/INTEGRATIONTESTS.md).
 
 ### End to end tests
 
