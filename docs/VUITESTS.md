@@ -66,7 +66,7 @@ Here you can find the full bash script:
         folder="../skill-package/interactionModels/*"
     fi
 
-    for d in ../models/*; do
+    for d in ${folder}; do
 
         file_name="${d##*/}"
         locale="${file_name%.*}"
