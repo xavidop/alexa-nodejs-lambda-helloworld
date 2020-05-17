@@ -140,7 +140,7 @@ These jobs will check the full system using the voice as input. Check the full e
 
 ### Validation tests
 
-These jobs will check the full system using the voice as input. Check the full explanation [here](docs/VALIDATIONTESTS.md).
+These jobs will validate your Alexa Skill before submitting it to certification. Check the full explanation [here](docs/VALIDATIONTESTS.md).
 
 ### Store-artifacts
 
@@ -178,7 +178,7 @@ This job is a different job that only exists down the `workflows` node in the co
 
 ### Submit
 
-These jobs will check the full system using the voice as input. Check the full explanation [here](docs/SUBMIT.md).
+These jobs will csubmit your Alexa Skill to certification. Check the full explanation [here](docs/SUBMIT.md).
 
 ## Workflow
 
