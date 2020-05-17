@@ -178,7 +178,7 @@ This job is a different job that only exists down the `workflows` node in the co
 
 ### Submit
 
-These jobs will csubmit your Alexa Skill to certification. Check the full explanation [here](docs/SUBMIT.md).
+These jobs will submit your Alexa Skill to certification. Check the full explanation [here](docs/SUBMIT.md).
 
 ## Workflow
 
